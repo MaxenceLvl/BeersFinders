@@ -15,7 +15,7 @@ struct TabBar: View {
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person.fill") }
                 .tag(0)
-            BeersView()
+            BeerListView()
                 .tabItem { Label("Search", systemImage: "magnifyingglass")}
                 .tag(1)
             FavsView()
