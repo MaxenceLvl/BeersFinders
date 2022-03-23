@@ -11,7 +11,7 @@ struct BeerListView: View {
     var body: some View {
         NavigationView {
             List {
-                BeerRow()
+                BeerRow(urlString: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1559315764/ljcahqwkq0vztkpm7j9y.png")
             }
             .navigationTitle("Search")
         }
