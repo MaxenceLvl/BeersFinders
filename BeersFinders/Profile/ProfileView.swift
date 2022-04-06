@@ -10,8 +10,21 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         NavigationView {
-            Text("Hello, Profile!")
-                .navigationTitle("Profile")
+            ScrollView {
+                VStack {
+                    Text("Profile")
+                }
+            }
+            .navigationTitle("Profile")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("open cam")
+                    } label: {
+                        Image(systemName: "camera.fill")
+                    }
+                }
+            }
         }
     }
 }
