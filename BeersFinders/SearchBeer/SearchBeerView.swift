@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct BeerListView: View {
+struct SearchBeerView: View {
     var body: some View {
         NavigationView {
             List {
-                BeerRow(urlString: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1559315764/ljcahqwkq0vztkpm7j9y.png")
+                SearchBeerRow()
             }
             .navigationTitle("Search")
         }
@@ -19,8 +19,8 @@ struct BeerListView: View {
     }
 }
 
-struct BeersListView_Previews: PreviewProvider {
+struct SearchBeerView_Previews: PreviewProvider {
     static var previews: some View {
-        BeerListView()
+        SearchBeerView()
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct BeersFindersApp: App {
-    let persistenceController = PersistenceController.shared
+    let persistenceController = DBService.shared
 
     var body: some Scene {
         WindowGroup {

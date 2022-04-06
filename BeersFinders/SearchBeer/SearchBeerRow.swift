@@ -35,7 +35,7 @@ struct BeerRow: View {
     }
 }
 
-struct BeerRow_Previews: PreviewProvider {
+struct SearchBeerRow_Previews: PreviewProvider {
     static var previews: some View {
         BeerRow(urlString: "")
     }
