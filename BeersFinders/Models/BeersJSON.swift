@@ -22,12 +22,12 @@ struct Beer: Codable {
     let displayName: String?
     let fermentation: String?
     let typeFamily: String?
-    let profileImage: String?
+    let profileImage: String
     
     enum CodingKeys: String, CodingKey {
         case displayName = "display_name"
         case description = "int_description"
-        case profileImage = "_id"
+        case profileImage = "profile_image"
         
         case id
         case IBU
