@@ -19,7 +19,7 @@ struct SearchBeerView: View {
                                , content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 100)
+                            .frame(maxWidth: 50)
                     }, placeholder: {
                         ProgressView()
                     })
