@@ -16,15 +16,6 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("Profile")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        print("open cam")
-                    } label: {
-                        Image(systemName: "camera.fill")
-                    }
-                }
-            }
         }
     }
 }

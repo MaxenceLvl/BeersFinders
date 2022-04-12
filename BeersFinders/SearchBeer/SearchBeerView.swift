@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct SearchBeerView: View {
-    @StateObject private var beerListVM = SearchBeerViewModel()
+    @ObservedObject private var viewModel: SearchBeerViewModel
+    
+    init(viewModel: SearchBeerViewModel) {
+        self.viewModel = viewModel
+    }
+
     @State private var searchText: String = ""
     
     var body: some View {
@@ -35,14 +40,32 @@ struct SearchBeerView: View {
                             beerListVM.beers.removeAll()
                         }
                     }
-                }.navigationTitle("Beers")
+                }
+                .navigationTitle("Beers")
+                .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.showPicker = true
+                    } label: {
+                        Image(systemName: "camera.fill")
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $viewModel.showPicker) {
+                ImagePickerView(data: $viewModel.pickedImageData)
+                    .edgesIgnoringSafeArea(.all)
+            }
+            .onAppear {
+                // TODO: - 1 -> fct pour fetch Result
+                viewModel.fetchResult()
+            }
         }
     }
 }
 
-
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBeerView()
+        let viewModel = SearchBeerViewModel()
+        SearchBeerView(viewModel: viewModel)
     }
 }

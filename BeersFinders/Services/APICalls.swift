@@ -13,6 +13,8 @@ class APICall {
     var session: URLSession
     var request: URLRequest
     
+    
+    //TODO: - Faire le changement de name en fct du retour de vision
     init() {
         urlComponent = URLComponents()
         urlComponent.scheme = "https"
@@ -41,7 +43,7 @@ class APICall {
         case noData
     }
     
-    func fetchHitResults(completionHandler: @escaping (Result<[Beer], Error>) -> Void) {
+    func fetchBeerResults(completionHandler: @escaping (Result<[Beer], Error>) -> Void) {
         session.dataTask(with: request) { data, response, error in
             if let _ = error {
                 completionHandler(.failure(NetworkError.noData))
