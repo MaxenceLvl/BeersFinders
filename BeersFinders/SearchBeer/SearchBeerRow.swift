@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BeerRow: View {
+struct SearchBeerRow: View {
     
     let urlString: String?
     
@@ -37,6 +37,6 @@ struct BeerRow: View {
 
 struct SearchBeerRow_Previews: PreviewProvider {
     static var previews: some View {
-        BeerRow(urlString: "")
+        SearchBeerRow(urlString: "")
     }
 }

@@ -84,6 +84,6 @@ private let itemFormatter: DateFormatter = {
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//   //     ContentView().environment(\.managedObjectContext, DBService.preview.container.viewContext)
+//        ContentView().environment(\.managedObjectContext, DBService.preview.container.viewContext)
 //    }
 //}
