@@ -23,7 +23,7 @@ class OCRService: OCRServiceDescriptor {
             let res = self.recognizeTextHandler(request: request, error: error)
             completion(res)
         }
-        request.recognitionLevel = .fast
+        request.recognitionLevel = .accurate
 
         do {
             // Perform the text-recognition request.

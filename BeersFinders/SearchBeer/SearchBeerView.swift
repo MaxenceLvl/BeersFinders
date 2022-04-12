@@ -13,59 +13,59 @@ struct SearchBeerView: View {
     init(viewModel: SearchBeerViewModel) {
         self.viewModel = viewModel
     }
-
+    
     @State private var searchText: String = ""
     
     var body: some View {
         NavigationView {
-            List(beerListVM.beers, id: \.id) { beer in
+            List(viewModel.beers, id: \.id) { beer in
+//                SearchBeerRow(urlString: beer.image)
                 HStack {
-                    AsyncImage(url: beer.image
-                               , content: { image in
+                    AsyncImage(url: beer.image, content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 50)
+                            .frame(width: 90, height: 90)
                     }, placeholder: {
                         ProgressView()
                     })
                     Text(beer.title!)
                 }
             }.listStyle(.plain)
-                .searchable(text: $searchText)
-                .onChange(of: searchText) { value in
-                    Task.init {
-                        if !value.isEmpty &&  value.count > 3 {
-                            await beerListVM.search(name: value)
-                        } else {
-                            beerListVM.beers.removeAll()
+                .navigationTitle(viewModel.title)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            viewModel.showPicker = true
+                        } label: {
+                            Image(systemName: "camera.fill")
                         }
                     }
                 }
-                .navigationTitle("Beers")
-                .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.showPicker = true
-                    } label: {
-                        Image(systemName: "camera.fill")
-                    }
+                .fullScreenCover(isPresented: $viewModel.showPicker) {
+                    ImagePickerView(data: $viewModel.pickedImageData)
+                        .edgesIgnoringSafeArea(.all)
                 }
-            }
-            .fullScreenCover(isPresented: $viewModel.showPicker) {
-                ImagePickerView(data: $viewModel.pickedImageData)
-                    .edgesIgnoringSafeArea(.all)
-            }
-            .onAppear {
-                // TODO: - 1 -> fct pour fetch Result
-                viewModel.fetchResult()
+                .onAppear {
+                    // TODO: - 1 -> fct pour fetch Result
+                    viewModel.fetchResult()
+                }
+        }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .onChange(of: searchText) { value in
+            Task.init {
+                if !value.isEmpty && value.count > 2 {
+                    await viewModel.search(name: value)
+                } else {
+                    viewModel.beers.removeAll()
+                }
             }
         }
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = SearchBeerViewModel()
-        SearchBeerView(viewModel: viewModel)
-    }
-}
+//struct SearchBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewModel = SearchBeerViewModel()
+//        SearchBeerView(viewModel: viewModel)
+//    }
+//}

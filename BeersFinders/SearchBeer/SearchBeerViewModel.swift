@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 @MainActor
 class SearchBeerViewModel: ObservableObject {
@@ -19,16 +20,19 @@ class SearchBeerViewModel: ObservableObject {
     private(set) var title = "Search 🍺"
     private var cancellable = Set<AnyCancellable>()
 
-    
     private let ocrService: OCRServiceDescriptor = OCRService()
-    private let apiService: APICall = APICall()
-
+    private let apiService: APIService = APIService()
+    
+    init() {
+        Task {
+            await search(name: "")
+        }
+    }
 
     func search(name: String) async {
         do {
-            let beers = try await Connection().getBeers(searchTerm: name)
+            let beers = try await apiService.fetchBeerResults(with: name)
             self.beers = beers.map(BeerViewModel.init)
-            
         } catch {
             print(error)
         }
@@ -44,14 +48,19 @@ class SearchBeerViewModel: ObservableObject {
     
     func fetchResult() {
         // TODO: - 1 DetectText from picked Image
-        $pickedImageData.sink { data in
-            debugPrint("\(data)")
+        $pickedImageData.sink { [self] data in
+            debugPrint("\(String(describing: data))")
             if let dataImage = data?.data {
                 self.detectText(in: dataImage)
+                print(self.detectedText)
+                let test = UITextChecker().guesses(forWordRange: NSRangeFromString(self.detectedText!) , in: self.detectedText ?? "", language: "en")
+                print(test)
             }
         }.store(in: &cancellable)
         
         // TODO: - 2 Call API
+        print(detectedText)
+        
     }
 }
 
@@ -68,6 +77,6 @@ struct BeerViewModel {
     }
     
     var image: URL? {
-        URL(string: beer.profileImage)
+        return beer.profileImage == nil ? nil : URL(string: beer.profileImage!)
     }
 }
