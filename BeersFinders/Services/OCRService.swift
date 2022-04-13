@@ -23,6 +23,7 @@ class OCRService: OCRServiceDescriptor {
             let res = self.recognizeTextHandler(request: request, error: error)
             completion(res)
         }
+//        request.minimumTextHeight = 18.0
         request.recognitionLevel = .accurate
 
         do {

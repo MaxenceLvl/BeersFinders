@@ -13,7 +13,7 @@ struct BeerResult: Codable {
     let beersInDatabase: Int
 }
 
-struct Beer: Codable {
+struct Beer: Codable, Identifiable, Hashable {
     let id: String?
     let IBU: Int?
     let alcohol: Int?

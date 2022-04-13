@@ -1,5 +1,5 @@
 //
-//  SearchBarView.swift
+//  SearchBeerView.swift
 //  BeersFinders
 //
 //  Created by Louis Cauret on 23/03/2022.
@@ -45,10 +45,6 @@ struct SearchBeerView: View {
                     ImagePickerView(data: $viewModel.pickedImageData)
                         .edgesIgnoringSafeArea(.all)
                 }
-                .onAppear {
-                    // TODO: - 1 -> fct pour fetch Result
-                    viewModel.fetchResult()
-                }
         }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .onChange(of: searchText) { value in
@@ -62,10 +58,3 @@ struct SearchBeerView: View {
         }
     }
 }
-
-//struct SearchBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let viewModel = SearchBeerViewModel()
-//        SearchBeerView(viewModel: viewModel)
-//    }
-//}
