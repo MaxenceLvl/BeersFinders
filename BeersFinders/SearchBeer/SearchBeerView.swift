@@ -19,20 +19,19 @@ struct SearchBeerView: View {
     var body: some View {
         NavigationView {
             List(viewModel.beers, id: \.id) { beer in
-//                SearchBeerRow(urlString: beer.image)
-//                NavigationLink(destination: BeerDetail()) {
-//                    SearchBeerRow()
-//                }
-                HStack {
-                    AsyncImage(url: beer.image, content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 90, height: 90)
-                    }, placeholder: {
-                        ProgressView()
-                    })
-                    Text(beer.title!)
+                NavigationLink(destination: BeerDetails(beer: beer.beer)) {
+                    SearchBeerRow(beerUrl: beer.image, name: beer.title, alcohol: beer.beer.alcohol)
                 }
+//                HStack {
+//                    AsyncImage(url: beer.image, content: { image in
+//                        image.resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(width: 90, height: 90)
+//                    }, placeholder: {
+//                        ProgressView()
+//                    })
+//                    Text(beer.title!)
+//                }
             }.listStyle(.plain)
                 .navigationTitle(viewModel.title)
                 .toolbar {

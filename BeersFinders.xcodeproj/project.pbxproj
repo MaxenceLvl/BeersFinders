@@ -21,6 +21,7 @@
 		871F3A4627FDEDF900BE6646 /* SearchBeerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F3A4527FDEDF900BE6646 /* SearchBeerViewModel.swift */; };
 		875837D627EB1F5800093E11 /* BeersJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875837D527EB1F5800093E11 /* BeersJSON.swift */; };
 		875837DA27EB775600093E11 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875837D927EB775500093E11 /* APIService.swift */; };
+		876CD281280FFCE00041580F /* BeerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876CD280280FFCDF0041580F /* BeerDetails.swift */; };
 		876D0B9C28003E2B00E32B58 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876D0B9B28003E2B00E32B58 /* OCRService.swift */; };
 		876D0B9E280061B400E32B58 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876D0B9D280061B400E32B58 /* ImageData.swift */; };
 		876D0BA12800626900E32B58 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876D0BA02800626900E32B58 /* ImagePicker.swift */; };
@@ -45,6 +46,7 @@
 		871F3A4527FDEDF900BE6646 /* SearchBeerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBeerViewModel.swift; sourceTree = "<group>"; };
 		875837D527EB1F5800093E11 /* BeersJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeersJSON.swift; sourceTree = "<group>"; };
 		875837D927EB775500093E11 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		876CD280280FFCDF0041580F /* BeerDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetails.swift; sourceTree = "<group>"; };
 		876D0B9B28003E2B00E32B58 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
 		876D0B9D280061B400E32B58 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		876D0BA02800626900E32B58 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		8706A7E627BCFB7B00D60DCA /* BeersFinders */ = {
 			isa = PBXGroup;
 			children = (
+				876CD27F280FFCC30041580F /* BeerDetails */,
 				876D0B9F2800624F00E32B58 /* Bridges */,
 				D8EF8A6527BD12D40081E3FF /* Scan */,
 				8706A80527BD014E00D60DCA /* Profile */,
@@ -160,6 +163,14 @@
 				8706A80827BD162B00D60DCA /* LoginView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		876CD27F280FFCC30041580F /* BeerDetails */ = {
+			isa = PBXGroup;
+			children = (
+				876CD280280FFCDF0041580F /* BeerDetails.swift */,
+			);
+			path = BeerDetails;
 			sourceTree = "<group>";
 		};
 		876D0B9F2800624F00E32B58 /* Bridges */ = {
@@ -257,6 +268,7 @@
 				876D0B9C28003E2B00E32B58 /* OCRService.swift in Sources */,
 				8706A7F127BCFB7D00D60DCA /* DBService.swift in Sources */,
 				D8EF8A6727BD131A0081E3FF /* CameraView.swift in Sources */,
+				876CD281280FFCE00041580F /* BeerDetails.swift in Sources */,
 				875837D627EB1F5800093E11 /* BeersJSON.swift in Sources */,
 				87889C7F27D8A5EA000D39D5 /* SearchBeerRow.swift in Sources */,
 				8706A7F127BCFB7D00D60DCA /* DBService.swift in Sources */,
@@ -416,7 +428,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxencelevelu.BeersFinders;
+				PRODUCT_BUNDLE_IDENTIFIER = BeersFinders;
 				PRODUCT_NAME = BeersFinder;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -449,7 +461,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxencelevelu.BeersFinders;
+				PRODUCT_BUNDLE_IDENTIFIER = BeersFinders;
 				PRODUCT_NAME = BeersFinder;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

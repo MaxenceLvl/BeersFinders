@@ -19,6 +19,7 @@ class SearchBeerViewModel: ObservableObject {
     
     private(set) var title = "Search 🍺"
     private var cancellable = Set<AnyCancellable>()
+    private var country = CountryCode()
     
     private let ocrService: OCRServiceDescriptor = OCRService()
     private let apiService: APIService = APIService()
@@ -90,6 +91,23 @@ class SearchBeerViewModel: ObservableObject {
             .sorted { $0.numberOfMatch < $1.numberOfMatch }
             .map { $0.beer }
         self.beers = sortedBeers.map(BeerViewModel.init)
+    }
+    
+    func flag(country:String) -> String {
+        let base : UInt32 = 127397
+        var flag = ""
+        for v in country.unicodeScalars {
+            flag.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return flag
+    }
+    
+    func getCountryCode (_ countryDigit : String) -> String {
+        if let key = country.countryDictionary.first(
+            where: { $0.value == countryDigit })?.key {
+            return key
+        }
+        return ""
     }
 }
 

@@ -9,34 +9,47 @@ import SwiftUI
 
 struct SearchBeerRow: View {
     
-    let urlString: String?
+    let beerUrl: URL?
+    let name: String?
+    let alcohol: Int?
     
     var body: some View {
         HStack(spacing: 5) {
-            if let url = urlString {
-                AsyncImage(
-                    url: URL(string: url),
-                    content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 75, maxHeight: 150)
-                    },
-                    placeholder: {
-                        ProgressView()
-                    }
-                )
+            if let url = beerUrl {
+                AsyncImage(url: url, content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 90, height: 90)
+                },
+                           placeholder: {
+                    ProgressView()
+                })
+            } else {
+                Image("empty_beer")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 90, height: 90)
             }
+ 
             VStack(alignment: .leading, spacing: 0) {
-                Text("World")
-                    .font(.system(size: 18, weight: .bold))
+                if let beerName = name {
+                    Text(beerName)
+                        .font(.system(size: 18, weight: .bold))
+                }
+                if let alc = alcohol {
+                    Text("\(alc/100)%")
+                }
                 Spacer()
             }
         }
     }
 }
 
+
 struct SearchBeerRow_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBeerRow(urlString: "")
+        SearchBeerRow(beerUrl: URL(string: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png"),
+                      name: "Leffe Ambrée", alcohol: 700
+        )
     }
 }
