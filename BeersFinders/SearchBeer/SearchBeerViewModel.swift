@@ -53,7 +53,7 @@ class SearchBeerViewModel: ObservableObject {
     }
     
     func fetchResult() async throws {
-        // TODO: - 1 DetectText from picked Image
+        // MARK: - 1 DetectText from picked Image
         $pickedImageData.sink { [self] data in
             debugPrint("\(String(describing: data))")
             if let dataImage = data?.data {
@@ -61,8 +61,9 @@ class SearchBeerViewModel: ObservableObject {
             }
         }.store(in: &cancellable)
         
-        // TODO: - 2 Call API
+        // MARK: - 2 Call API
         print(self.detectedText)
+        self.beers.removeAll()
         let beers: [[Beer]] = try await withThrowingTaskGroup(of: [Beer].self, body: { group in
             var beerResult = [[Beer]]()
             detectedText.forEach { text in
@@ -70,16 +71,15 @@ class SearchBeerViewModel: ObservableObject {
                     return try await self.apiService.fetchBeerResults(with: text)
                 }
             }
-            
             for try await b in group {
                 beerResult.append(b)
             }
-            
             return beerResult
         })
         
         let res = beers.flatMap { $0 }
         let beersRes = Array(Set(res))
+        
         let sortedBeers = beersRes.map { beer -> BeerMatch in
             let count = detectedText.reduce(0) { partialResult, text in
                 return beer.displayName!.contains(text) ? partialResult + 1 : partialResult
