@@ -19,6 +19,7 @@ struct TabBar: View {
                 .tabItem { Label("Search", systemImage: "magnifyingglass")}
                 .tag(1)
         }
+        .preferredColorScheme(.dark)
     }
 }
 

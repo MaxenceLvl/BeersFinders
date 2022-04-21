@@ -18,6 +18,6 @@ struct BeerDetails: View {
 
 struct BeerDetails_Previews: PreviewProvider {
     static var previews: some View {
-        BeerDetails(beer: Beer(id: "aezr", IBU: 25, alcohol: 75, beerType: "Ambrée", description: "OUAIS OUAIS", displayName: "Leffe Ambré", fermentation: "Fermentation basse", typeFamily: "Biere", profileImage: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png"))
+        BeerDetails(beer: Beer(id: "aezr", IBU: 25, alcohol: 75, beerType: "Ambrée", description: "OUAIS OUAIS", displayName: "Leffe Ambré", fermentation: "Fermentation basse", typeFamily: "Biere", profileImage: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png", brewery: Brewery(country: "USA", name: "Leffe")))
     }
 }

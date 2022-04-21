@@ -20,7 +20,12 @@ struct SearchBeerView: View {
         NavigationView {
             List(viewModel.beers, id: \.id) { beer in
                 NavigationLink(destination: BeerDetails(beer: beer.beer)) {
-                    SearchBeerRow(beerUrl: beer.image, name: beer.title, alcohol: beer.beer.alcohol)
+                    SearchBeerRow(beerUrl: beer.image, name: beer.title,
+                                  alcohol: beer.beer.alcohol,
+                                  countryCode: beer.beer.brewery?.country,
+                                  breweryName: beer.beer.brewery?.name,
+                                  beerType: beer.beer.beerType
+                    )
                 }
 //                HStack {
 //                    AsyncImage(url: beer.image, content: { image in
