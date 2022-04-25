@@ -91,23 +91,6 @@ class SearchBeerViewModel: ObservableObject {
             .map { $0.beer }
         self.beers = sortedBeers.map(BeerViewModel.init)
     }
-    
-//    func flag(country:String) -> String {
-//        let base : UInt32 = 127397
-//        var flag = ""
-//        for v in country.unicodeScalars {
-//            flag.unicodeScalars.append(UnicodeScalar(base + v.value)!)
-//        }
-//        return flag
-//    }
-//
-//    func getCountryCode (_ countryDigit : String) -> String {
-//        if let key = country.countryDictionary.first(
-//            where: { $0.value == countryDigit })?.key {
-//            return key
-//        }
-//        return ""
-//    }
 }
 
 struct BeerMatch {

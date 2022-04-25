@@ -27,16 +27,6 @@ struct SearchBeerView: View {
                                   beerType: beer.beer.beerType
                     )
                 }
-//                HStack {
-//                    AsyncImage(url: beer.image, content: { image in
-//                        image.resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(width: 90, height: 90)
-//                    }, placeholder: {
-//                        ProgressView()
-//                    })
-//                    Text(beer.title!)
-//                }
             }.listStyle(.plain)
                 .navigationTitle(viewModel.title)
                 .toolbar {

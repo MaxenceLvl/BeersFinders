@@ -26,6 +26,7 @@
 		876D0B9E280061B400E32B58 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876D0B9D280061B400E32B58 /* ImageData.swift */; };
 		876D0BA12800626900E32B58 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876D0BA02800626900E32B58 /* ImagePicker.swift */; };
 		87889C7F27D8A5EA000D39D5 /* SearchBeerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87889C7E27D8A5EA000D39D5 /* SearchBeerRow.swift */; };
+		879393682816FB16008F8FB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 879393672816FB16008F8FB2 /* Localizable.strings */; };
 		87F52E96281143D800CAA3FA /* IsoCountryCodes in Frameworks */ = {isa = PBXBuildFile; productRef = 87F52E95281143D800CAA3FA /* IsoCountryCodes */; };
 		D8EF8A6727BD131A0081E3FF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8A6627BD13190081E3FF /* CameraView.swift */; };
 		D8EF8A6927BD151D0081E3FF /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8A6827BD151D0081E3FF /* CameraViewModel.swift */; };
@@ -52,6 +53,7 @@
 		876D0B9D280061B400E32B58 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		876D0BA02800626900E32B58 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		87889C7E27D8A5EA000D39D5 /* SearchBeerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBeerRow.swift; sourceTree = "<group>"; };
+		879393672816FB16008F8FB2 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D8EF8A6627BD13190081E3FF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		D8EF8A6827BD151D0081E3FF /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 				8706A7E927BCFB7B00D60DCA /* ContentView.swift */,
 				8706A7EB27BCFB7D00D60DCA /* Assets.xcassets */,
 				8706A7ED27BCFB7D00D60DCA /* Preview Content */,
+				879393672816FB16008F8FB2 /* Localizable.strings */,
 			);
 			path = BeersFinders;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8706A7EF27BCFB7D00D60DCA /* Preview Assets.xcassets in Resources */,
+				879393682816FB16008F8FB2 /* Localizable.strings in Resources */,
 				8706A7EC27BCFB7D00D60DCA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

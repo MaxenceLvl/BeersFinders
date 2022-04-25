@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct BeerResult: Codable {
     let beers: [Beer]
@@ -14,17 +15,17 @@ struct BeerResult: Codable {
 }
 
 struct Beer: Codable, Identifiable, Hashable {
-    let id: String?
-    let IBU: Int?
-    let alcohol: Int?
-    let beerType: String?
-    let description: String?
-    let displayName: String?
-    let fermentation: String?
-    let typeFamily: String?
-    let profileImage: String?
-    let brewery: Brewery?
-    
+    let id:             String?
+    let IBU:            Int?
+    let alcohol:        Int?
+    let beerType:       String?
+    let description:    String?
+    let displayName:    String?
+    let fermentation:   String?
+    let typeFamily:     String?
+    let profileImage:   String?
+    let brewery:        Brewery?
+      
     enum CodingKeys: String, CodingKey {
         case displayName = "display_name"
         case description = "int_description"
