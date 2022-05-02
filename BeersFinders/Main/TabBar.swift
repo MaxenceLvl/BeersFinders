@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TabBar: View {
     @State private var selection: Int = 1
@@ -20,6 +21,11 @@ struct TabBar: View {
                 .tag(1)
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            DispatchQueue.main.async {
+                DBService.shared.addDefaultUser()
+            }
+        }
     }
 }
 

@@ -1,14 +1,16 @@
 {
-  "pins" : [
-    {
-      "identity" : "isocountrycodes",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/funky-monkey/IsoCountryCodes",
-      "state" : {
-        "revision" : "c571f2133f32d56f6ef4af0d210bd1fc7adf6a02",
-        "version" : "1.0.2"
+  "object": {
+    "pins": [
+      {
+        "package": "IsoCountryCodes",
+        "repositoryURL": "https://github.com/funky-monkey/IsoCountryCodes.git",
+        "state": {
+          "branch": null,
+          "revision": "c571f2133f32d56f6ef4af0d210bd1fc7adf6a02",
+          "version": "1.0.2"
+        }
       }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }
