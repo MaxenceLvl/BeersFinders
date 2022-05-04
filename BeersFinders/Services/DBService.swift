@@ -37,11 +37,12 @@ struct DBService {
     }
     
     //MARK: - Core Data to store Beer
-    
     func getBeers() -> Result<[Beers], Error> {
-        
-        let fetchRequest = Beers.fetchRequest()
         let context = container.viewContext
+        let predicate: NSPredicate = NSPredicate(format: "isFavorite = %d", true)
+        let fetchRequest = Beers.fetchRequest()
+        
+        fetchRequest.predicate = predicate
         
         do {
             let beers = try context.fetch(fetchRequest)
@@ -49,6 +50,127 @@ struct DBService {
         } catch {
             return .failure(error)
         }
+    }
+    
+    func getBreweries() -> Result<[Breweries], Error> {
+        let context = container.viewContext
+        let fetchRequest = Breweries.fetchRequest()
+        
+        do {
+            let breweries = try context.fetch(fetchRequest)
+            return .success(breweries)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func removeFavBeer(with beer: Beer) -> Result<Bool, Error> {
+        let context = container.viewContext
+        let beers = getBeers()
+        switch beers {
+        case .failure(let error): return .failure(error)
+        case .success(let beerRes):
+            if(beerRes.contains(where: { b in
+                b.beerID == beer.id
+            })) {
+                if let beerCoreData = beerRes.first(where: { $0.beerID == beer.id }) {
+                    do {
+                        let beerToDelete = try context.existingObject(with: beerCoreData.objectID)
+                        context.delete(beerToDelete)
+                        return .success(true)
+                    } catch {
+                        print(error.localizedDescription)
+                        return .failure(error)
+                    }
+                }
+            }
+        }
+        return .success(false)
+    }
+    
+    func removeFromFav(by id: NSManagedObjectID) -> Result<Bool, Error> {
+        let context = container.viewContext
+        
+        do {
+            let beer = try context.existingObject(with: id)
+            beer.setValue(true, forKey: "isFavorite")
+            try context.save()
+            return .success(true)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func addFavBeer(with beer: Beer) -> Result<Bool, Error> {
+        let context = container.viewContext
+        let beers = getBeers()
+        let breweries = getBreweries()
+        
+        switch beers {
+        case .failure(let error): return .failure(error)
+        case .success(let beerResult):
+            switch breweries {
+            case .failure(let error): return .failure(error)
+            case .success(let breweryResult):
+                let brewery = Breweries(entity: Breweries.entity(), insertInto: context)
+                brewery.name = beer.brewery?.name
+                brewery.country = beer.brewery?.country
+                if(breweryResult.isEmpty) {
+                    do {
+                        try context.save()
+                    } catch {
+                        print(error.localizedDescription)
+                        return .failure(error)
+                    }
+                } else {
+                    if(breweryResult.contains(where: { breweryRes in
+                        breweryRes.name == beer.brewery?.name
+                    })) {
+                        do {
+                            try context.save()
+                        } catch {
+                            print(error.localizedDescription)
+                            return .failure(error)
+                        }
+                    }
+                }
+                let favBeer = Beers(entity: Beers.entity(), insertInto: context)
+                favBeer.beerID = beer.id!
+                favBeer.name = beer.displayName
+                favBeer.brewery = brewery
+                favBeer.alcohol = (beer.alcohol == nil) ? 0 : Int64(beer.alcohol!)
+                favBeer.fermentation = beer.fermentation
+                favBeer.ibu = (beer.IBU == nil) ? 0 : Int64(beer.IBU!)
+                favBeer.beerDescription = beer.description
+                favBeer.image = beer.profileImage
+                favBeer.type = beer.beerType
+                favBeer.family = beer.typeFamily
+                favBeer.isFavorite = true
+                
+                if(!beerResult.isEmpty) {
+                    if(!beerResult.contains(where: { beerRes in
+                        beerRes.name == beer.displayName
+                    })) {
+                        do {
+                            try context.save()
+                            return .success(true)
+                        } catch {
+                            print(error.localizedDescription)
+                            return .failure(error)
+                        }
+                    }
+                } else {
+                    do {
+                        try context.save()
+                        return .success(true)
+                    } catch {
+                        print(error.localizedDescription)
+                        return .failure(error)
+                    }
+                }
+            }
+        }
+        return .success(true)
     }
     
     func getUser() -> Result<User?, Error> {

@@ -1,25 +1,25 @@
 //
-//  BeerDetails.swift
+//  BeerDetailsDataView.swift
 //  BeersFinders
 //
-//  Created by Maxence Levelu on 20/04/2022.
+//  Created by Maxence Levelu on 04/05/2022.
 //
 
 import SwiftUI
 import IsoCountryCodes
 
-struct BeerDetails: View {
+struct BeerDataDetails: View {
     
-    @ObservedObject private var viewModel:BeerDetailsViewModel
+    @ObservedObject private var viewModel: BeerDetailsCoreViewModel
     
-    init(vm: BeerDetailsViewModel) {
+    init(vm: BeerDetailsCoreViewModel) {
         self.viewModel = vm
     }
     
     var body: some View {
         ScrollView {
             VStack(alignment:.leading, spacing: 0){
-                if let beerName = viewModel.favoritesBeer.displayName {
+                if let beerName = viewModel.favoritesBeer.name {
                     Text(beerName)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .font(.system(size: 30, weight: .bold))
@@ -27,7 +27,7 @@ struct BeerDetails: View {
                 }
                 HStack(spacing: 0) {
                     Spacer()
-                    if let url = viewModel.favoritesBeer.profileImage {
+                    if let url = viewModel.favoritesBeer.image {
                         AsyncImage(url: URL(string: url), content: { image in
                             image.resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -69,7 +69,7 @@ struct BeerDetails: View {
                             .font(.system(size: 18, weight: .bold))
                         Text("NC")
                     }
-                    if let ibu = viewModel.favoritesBeer.IBU {
+                    if let ibu = viewModel.favoritesBeer.ibu {
                         Text("IBU : ")
                             .font(.system(size: 18, weight: .bold))
                         Text("\(ibu)")
@@ -81,7 +81,7 @@ struct BeerDetails: View {
                 }
                 .padding(.top, 16)
                 .padding(.horizontal, 10)
-                if let beerType = viewModel.favoritesBeer.beerType {
+                if let beerType = viewModel.favoritesBeer.type {
                     HStack(spacing: 0){
                         Text("Beer Type : ")
                             .font(.system(size: 18, weight: .bold))
@@ -104,7 +104,7 @@ struct BeerDetails: View {
                     .padding(.top, 16)
                     .padding(.horizontal, 10)
                 }
-                if let fType = viewModel.favoritesBeer.typeFamily {
+                if let fType = viewModel.favoritesBeer.family {
                     HStack(spacing: 0){
                         
                         Text("Family Type : ")
@@ -115,7 +115,7 @@ struct BeerDetails: View {
                     .padding(.top, 16)
                     .padding(.horizontal, 10)
                 }
-                if let description = viewModel.favoritesBeer.description {
+                if let description = viewModel.favoritesBeer.beerDescription {
                     Text("Description : ")
                         .font(.system(size: 18, weight: .bold))
                         .padding(.top, 16)
@@ -140,13 +140,11 @@ struct BeerDetails: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    if (viewModel.isAdded) {
-                        viewModel.removeBeerFav()
-                    } else {
-                        viewModel.addBeerFav()
+                    if (viewModel.isAdded || viewModel.favoritesBeer.isFavorite) {
+                        viewModel.removeBeerFav(with: viewModel.favoritesBeer)
                     }
                 } label: {
-                    if (viewModel.isAdded) {
+                    if (viewModel.isAdded || viewModel.favoritesBeer.isFavorite) {
                         Image(systemName: "star.fill")
                     } else {
                         Image(systemName: "star")
@@ -162,3 +160,4 @@ struct BeerDetails: View {
 //        BeerDetails(beer: Beer(id: "aezr", IBU: 25, alcohol: 75, beerType: "Ambrée", description: "OUAIS OUAIS", displayName: "Leffe Ambré", fermentation: "Fermentation basse", typeFamily: "Biere", profileImage: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png", brewery: Brewery(country: "USA", name: "Leffe")))
 //    }
 //}
+

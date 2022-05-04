@@ -30,8 +30,9 @@ struct SearchBeerRow: View {
                     ProgressView()
                 })
             } else {
-                Image("empty_beer")
+                Image("bier")
                     .resizable()
+                    .foregroundColor(.white)
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 90, height: 90)
                     .padding(.vertical, 10)
@@ -39,16 +40,18 @@ struct SearchBeerRow: View {
             VStack(alignment: .leading) {
                 if let beerName = name {
                     Text(beerName)
+                        .foregroundColor(.white)
                         .font(.system(size: 18, weight: .bold))
                         .padding(.vertical, 10)
-                        .padding(.leading, 2)
                 }
                 HStack(spacing: 0) {
                     if let alc = alcohol {
                         Text("\(alc/100)%")
+                            .foregroundColor(.white)
                     }
                     if let beerType = beerType {
                         Text(" - \(beerType)")
+                            .foregroundColor(.white)
                             .lineLimit(1)
                     }
                 }
@@ -61,6 +64,7 @@ struct SearchBeerRow: View {
                     }
                     if let breweryName = breweryName {
                         Text(breweryName)
+                            .foregroundColor(.white)
                             .padding(.top, 5)
                             .lineLimit(1)
                     }

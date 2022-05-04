@@ -32,9 +32,31 @@ struct ProfileView: View {
                         Spacer()
                     }
                     // List of Fav Beers ForEach {}
+                    if viewModel.favoriteBeers.isEmpty {
+                        HStack {
+                            Text("You have no Favorite Beer 🍺")
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                    } else {
+                        ForEach(viewModel.favoriteBeers) { beer in
+                            let beerDetailViewModel = BeerDetailsCoreViewModel(with: beer)
+                            NavigationLink(destination: BeerDataDetails(vm: beerDetailViewModel)) {
+                                SearchBeerRow(beerUrl: URL(string: beer.image!),
+                                              name: beer.name,
+                                              alcohol: Int(beer.alcohol),
+                                              countryCode: beer.brewery?.country,
+                                              breweryName: beer.brewery?.name,
+                                              beerType: beer.type)
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle(viewModel.user?.userName ?? "Profile")
+        }
+        .onAppear{
+            viewModel.fetchUser()
+            viewModel.fetchFavoriteBeers()
         }
     }
 }

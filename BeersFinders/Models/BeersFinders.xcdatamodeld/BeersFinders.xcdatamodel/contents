@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G527" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Beers" representedClassName="Beers" syncable="YES" codeGenerationType="class">
-        <attribute name="beerID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="alcohol" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="beerDescription" optional="YES" attributeType="String"/>
+        <attribute name="beerID" optional="YES" attributeType="String"/>
+        <attribute name="family" optional="YES" attributeType="String"/>
+        <attribute name="fermentation" optional="YES" attributeType="String"/>
+        <attribute name="ibu" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Breweries" inverseName="beerBrewery" inverseEntity="Breweries"/>
         <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toBeers" inverseEntity="User"/>
+    </entity>
+    <entity name="Breweries" representedClassName="Breweries" syncable="YES" codeGenerationType="class">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="beerBrewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Beers" inverseName="brewery" inverseEntity="Beers"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -15,8 +29,9 @@
         <relationship name="toBeers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Beers" inverseName="toUser" inverseEntity="Beers"/>
     </entity>
     <elements>
+        <element name="Beers" positionX="-63" positionY="27" width="128" height="209"/>
+        <element name="Breweries" positionX="135" positionY="117" width="128" height="74"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="User" positionX="-63" positionY="18" width="128" height="89"/>
-        <element name="Beers" positionX="-63" positionY="27" width="128" height="74"/>
+        <element name="User" positionX="327.0838623046875" positionY="157.0955200195312" width="128" height="103"/>
     </elements>
 </model>

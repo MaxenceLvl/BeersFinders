@@ -19,7 +19,8 @@ struct SearchBeerView: View {
     var body: some View {
         NavigationView {
             List(viewModel.beers, id: \.id) { beer in
-                NavigationLink(destination: BeerDetails(beer: beer.beer)) {
+                let beerDetailViewModel = BeerDetailsViewModel(with: beer.beer)
+                NavigationLink(destination: BeerDetails(vm: beerDetailViewModel)) {
                     SearchBeerRow(beerUrl: beer.image, name: beer.title,
                                   alcohol: beer.beer.alcohol,
                                   countryCode: beer.beer.brewery?.country,

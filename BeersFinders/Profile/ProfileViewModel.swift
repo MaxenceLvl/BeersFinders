@@ -9,9 +9,6 @@ import SwiftUI
 import CoreData
 
 class ProfileViewModel: ObservableObject {
-    
-    @Environment(\.managedObjectContext) var manageObjectContext
-    
     @Published var favoriteBeers = [Beers]()
     @Published var user: User?
     
@@ -19,7 +16,6 @@ class ProfileViewModel: ObservableObject {
     {
         fetchFavoriteBeers()
         fetchUser()
-        try? CoreDataStack.sharedInstance.viewContext.save()
     }
     
     func fetchFavoriteBeers() {
