@@ -10,7 +10,7 @@ import IsoCountryCodes
 
 struct SearchBeerRow: View {
     
-    let beerUrl: URL?
+    let beerUrl: String?
     let name: String?
     let alcohol: Int?
     let countryCode: String?
@@ -20,7 +20,7 @@ struct SearchBeerRow: View {
     var body: some View {
         HStack(spacing: 5) {
             if let url = beerUrl {
-                AsyncImage(url: url, content: { image in
+                AsyncImage(url: URL(string: url), content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 90, height: 90)
@@ -77,7 +77,7 @@ struct SearchBeerRow: View {
 
 struct SearchBeerRow_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBeerRow(beerUrl: URL(string: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png"),
+        SearchBeerRow(beerUrl: "https://res.cloudinary.com/dzt4ytngw/image/upload/v1534164220/jc4ztekwrgvwglud6xqi.png",
                       name: "Leffe Ambrée", alcohol: 700, countryCode: "USA", breweryName: "Leffe", beerType: "Belgian Amber"
         )
     }

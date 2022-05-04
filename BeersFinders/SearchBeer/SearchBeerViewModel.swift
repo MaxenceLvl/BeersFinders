@@ -16,6 +16,7 @@ class SearchBeerViewModel: ObservableObject {
     @Published var pickedImageData: ImageData?
     @Published var isLoading: Bool = false
     @Published var detectedText: [String] = []
+    @Published var favoriteBeers: [Beers] = []
     
     private(set) var title = "Search 🍺"
     private var cancellable = Set<AnyCancellable>()
@@ -33,6 +34,7 @@ class SearchBeerViewModel: ObservableObject {
         Task {
             await search(name: "")
         }
+        fetchExistingBeers()
     }
     
     func search(name: String) async {
@@ -49,6 +51,14 @@ class SearchBeerViewModel: ObservableObject {
         ocrService.detectText(in: imageData) { [weak self] detection in
             self?.detectedText = detection
             self?.isLoading = false
+        }
+    }
+    
+    func fetchExistingBeers() {
+        let beerResult = DBService.shared.getBeers()
+        switch beerResult {
+        case .failure: return
+        case .success(let result): self.favoriteBeers = result
         }
     }
     

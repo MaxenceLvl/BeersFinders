@@ -11,13 +11,16 @@ class BeerDetailsViewModel: ObservableObject {
     
     @Published var favoritesBeer: Beer
     @Published var isAdded = false
+    @Published var isFavoriteBeer = false
     
-    init(with beer: Beer) {
+    init(with beer: Beer, isFavorite: Bool) {
         favoritesBeer = beer
+        isFavoriteBeer = isFavorite
     }
     
     func addBeerFav() {
         let res = DBService.shared.addFavBeer(with: favoritesBeer)
+        isFavoriteBeer = true
         
         switch res {
         case .failure: return
@@ -27,7 +30,7 @@ class BeerDetailsViewModel: ObservableObject {
     
     func removeBeerFav() {
         let res = DBService.shared.removeFavBeer(with: favoritesBeer)
-        
+        isFavoriteBeer = false 
         switch res {
         case .failure: return
         case .success(let success): self.isAdded = success

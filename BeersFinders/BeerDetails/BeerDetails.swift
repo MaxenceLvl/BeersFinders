@@ -140,13 +140,13 @@ struct BeerDetails: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    if (viewModel.isAdded) {
+                    if (viewModel.isFavoriteBeer) {
                         viewModel.removeBeerFav()
                     } else {
                         viewModel.addBeerFav()
                     }
                 } label: {
-                    if (viewModel.isAdded) {
+                    if (viewModel.isFavoriteBeer) {
                         Image(systemName: "star.fill")
                     } else {
                         Image(systemName: "star")

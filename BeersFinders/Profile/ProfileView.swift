@@ -41,7 +41,7 @@ struct ProfileView: View {
                         ForEach(viewModel.favoriteBeers) { beer in
                             let beerDetailViewModel = BeerDetailsCoreViewModel(with: beer)
                             NavigationLink(destination: BeerDataDetails(vm: beerDetailViewModel)) {
-                                SearchBeerRow(beerUrl: URL(string: beer.image!),
+                                SearchBeerRow(beerUrl: beer.image,
                                               name: beer.name,
                                               alcohol: Int(beer.alcohol),
                                               countryCode: beer.brewery?.country,
